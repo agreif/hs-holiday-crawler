@@ -1,0 +1,48 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.32.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 98c441e0d61e7e4d97b10a96d04d4e58caf0023882bf5b81b429b1bdeb193b65
+
+name:           hs-holiday-crawler
+version:        0.0.1
+synopsis:       Holiday Crawler.
+description:    Cralws holiday information.
+category:       Graphics
+maintainer:     Alex Greif
+license:        MIT
+license-file:   LICENSE.md
+build-type:     Simple
+extra-source-files:
+    CHANGELOG.md
+    package.yaml
+    README.md
+    stack.yaml
+
+flag library-only
+  manual: False
+  default: False
+
+library
+  exposed-modules:
+      HolidayCrawler
+  other-modules:
+      Paths_hs_holiday_crawler
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.8.2.0 && <4.9 || >=4.9.1.0 && <5
+    , bytestring
+    , lens
+    , tagsoup
+    , text
+    , time
+    , wreq
+  if (flag(dev)) || (flag(library-only))
+    ghc-options: -Wall -fwarn-tabs -O0
+    cpp-options: -DDEVELOPMENT
+  else
+    ghc-options: -Wall -fwarn-tabs -O2
+  default-language: Haskell2010

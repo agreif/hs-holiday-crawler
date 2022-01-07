@@ -1,0 +1,44 @@
+name:    hs-holiday-crawler
+version: 0.0.1
+
+category: Graphics
+description: Cralws holiday information.
+extra-source-files:
+  - CHANGELOG.md
+  - package.yaml
+  - README.md
+  - stack.yaml
+license-file: LICENSE.md
+license: MIT
+maintainer: Alex Greif
+synopsis: Holiday Crawler.
+
+dependencies:
+- base >=4.8.2.0 && <4.9 || >=4.9.1.0 && <5
+- text
+- bytestring
+- wreq
+- lens
+- tagsoup
+- time
+
+library:
+  source-dirs: src
+  when:
+  - condition: (flag(dev)) || (flag(library-only))
+    then:
+      ghc-options:
+      - -Wall
+      - -fwarn-tabs
+      - -O0
+      cpp-options: -DDEVELOPMENT
+    else:
+      ghc-options:
+      - -Wall
+      - -fwarn-tabs
+      - -O2
+
+flags:
+  library-only:
+    default: false
+    manual: false
